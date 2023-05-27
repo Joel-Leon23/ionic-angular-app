@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label>Matrícula</ion-label>
+      <ion-input type="text" formControlName="matricula"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input type="text" formControlName="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Materia</ion-label>
+      <ion-input type="text" formControlName="materia"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Calificación</ion-label>
+      <ion-input type="number" formControlName="calificacion"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="onAddCalificacion()">Agregar calificación</ion-button>
+    <ion-button expand="full" (click)="onUpdateCalificacion()">Actualizar calificación</ion-button>
+    <ion-item>
+      <ion-label>Buscar por Matrícula</ion-label>
+      <ion-input type="text" formControlName="searchMatricula"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="onSearchCalificacion()">Buscar calificación</ion-button>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let c of calificaciones">
+      <ion-label>
+        {{ c.nombre }} - {{ c.materia }}: {{ c.calificacion }} ({{ c.aprobado ? 'Aprobado' : 'Reprobado' }})
+      </ion-label>
+      <ion-button fill="outline" (click)="onRemoveCalificacion(c.matricula)">Borrar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
